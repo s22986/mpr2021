@@ -1,19 +1,23 @@
 package pl.dom133.Zjazd_2;
 
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.stereotype.Service;
 
-@RestController
+import java.util.Objects;
+
+@Service
 public class CarService {
 
-    @GetMapping("/car")
-    public Car cars() {
-        return new Car(5, 2021, 4, 1,
-                "Model 3", "black", "Tesla");
+    public Car getCar(String model, String mark) {
+        if(Objects.equals(model, "Y")) {
+            Car tesla = new Car(5, 2021, 4, 1, model, "Black", mark);
+            return tesla;
+        }
+
+        return null;
     }
 
-    public void print(Car car) {
-        System.out.println(car);
+    public String getCarData(Car car) {
+        return car.toString();
     }
 
     public void addotionalWheel(Car car) {
@@ -21,6 +25,4 @@ public class CarService {
             car.setWheels(car.getWheels() + 1);
         }
     }
-
-    //Co to serwis i restcontroller, poczytac o wstrzykiwaniu zaleznosci.
 }
