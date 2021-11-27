@@ -1,7 +1,13 @@
 package pl.dom133.Zjazd_2;
 
+import javax.persistence.*;
 
+@Entity
 public class Car {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private Long id;
     private int seat;
     private int yearOfProduction;
     private int wheels;
@@ -9,8 +15,13 @@ public class Car {
     private String model;
     private String color;
     private String mark;
+    private String vin;
 
-    public Car(int seat, int yearOfProduction, int wheels, int accessoryType, String model, String color, String mark) {
+    public Car(){
+
+    }
+
+    public Car(int seat, int yearOfProduction, int wheels, int accessoryType, String model, String color, String mark, String vin) {
         this.seat = seat;
         this.yearOfProduction = yearOfProduction;
         this.wheels = wheels;
@@ -18,6 +29,11 @@ public class Car {
         this.model = model;
         this.color = color;
         this.mark = mark;
+        this.vin = vin;
+    }
+
+    public Long getId() {
+        return id;
     }
 
     public int getSeat() {
@@ -48,6 +64,14 @@ public class Car {
         return mark;
     }
 
+    public String getVin() {
+        return vin;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
     public void setSeat(int seat) {
         this.seat = seat;
     }
@@ -76,16 +100,7 @@ public class Car {
         this.mark = mark;
     }
 
-    @Override
-    public String toString() {
-        return mark+"{" +
-                "seat=" + seat +
-                ", yearOfProduction=" + yearOfProduction +
-                ", wheels=" + wheels +
-                ", accessoryType=" + accessoryType +
-                ", model='" + model + '\'' +
-                ", color='" + color + '\'' +
-                ", mark='" + mark + '\'' +
-                '}';
+    public void setVin(String vin) {
+        this.vin = vin;
     }
 }
